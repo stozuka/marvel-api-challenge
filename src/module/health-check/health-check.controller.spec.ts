@@ -13,7 +13,7 @@ describe('HealthCheckController', () => {
     controller = app.get<HealthCheckController>(HealthCheckController);
   });
 
-  describe('root', () => {
+  describe('healthCheck', () => {
     it('should return success response', () => {
       const expected = {
         healthCheck: 'OK',

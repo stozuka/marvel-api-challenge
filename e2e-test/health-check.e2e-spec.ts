@@ -4,7 +4,7 @@ import * as request from 'supertest';
 
 import { HealthCheckModule } from '../src/module/health-check/health-check.module';
 
-describe('Health check controller', () => {
+describe('health-check', () => {
   let app: INestApplication;
 
   beforeEach(async () => {
