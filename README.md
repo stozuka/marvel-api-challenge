@@ -1,14 +1,20 @@
+![App CI](https://github.com/stozuka/marvel-api-challenge/actions/workflows/app.yaml/badge.svg)
+
 # Marvel API Challenge
 
 ## Setup
 
-1. Install dependencies
+1. Install Node.js
+
+This app requires the version of `>=14.0.0`.
+
+2. Install dependencies
 
 ```bash
 npm i
 ```
 
-2. Setup husky pre-commit hook
+3. Setup husky pre-commit hook
 
 ```bash
 npm run prepare
