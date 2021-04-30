@@ -4,7 +4,7 @@ import { endpoint } from 'src/constant';
 
 import { HealthCheckRespDto } from './dto';
 
-@ApiTags(endpoint.HEALTH_CHECK)
+@ApiTags('Health Check')
 @Controller(endpoint.HEALTH_CHECK)
 export class HealthCheckController {
   @Get()
