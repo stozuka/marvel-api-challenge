@@ -1,1 +1,1 @@
-# marvel-api-challenge
+# Marvel API Challenge
