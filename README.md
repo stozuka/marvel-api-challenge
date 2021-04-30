@@ -47,3 +47,9 @@ npm run test
 ```bash
 npm run test:e2e
 ```
+
+## API doc
+
+1. Start the server
+
+2. Access `http://localhost:8080/api/`
