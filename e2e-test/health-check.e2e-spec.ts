@@ -1,8 +1,7 @@
 import { INestApplication } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
+import { HealthCheckModule } from 'src/module/health-check/health-check.module';
 import * as request from 'supertest';
-
-import { HealthCheckModule } from '../src/module/health-check/health-check.module';
 
 describe('health-check', () => {
   let app: INestApplication;
