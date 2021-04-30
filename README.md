@@ -20,6 +20,14 @@ npm i
 npm run prepare
 ```
 
+4. Setup env variables
+
+```bash
+cp .env.example .env
+```
+
+Add your values for all the keys.
+
 ## Start the server in local
 
 - Watch mode
