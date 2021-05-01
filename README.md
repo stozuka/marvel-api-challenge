@@ -30,6 +30,14 @@ Add your values for all the keys.
 
 ## Start the server in local
 
+1. Start Redis
+
+```bash
+docker-compose up
+```
+
+2. Start the application server
+
 - Watch mode
 
 ```bash
