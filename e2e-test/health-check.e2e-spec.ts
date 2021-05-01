@@ -15,6 +15,10 @@ describe('health-check', () => {
     await app.init();
   });
 
+  afterEach(async () => {
+    await app.close();
+  });
+
   it('/health-check (GET) success', () => {
     return request(app.getHttpServer())
       .get('/health-check')

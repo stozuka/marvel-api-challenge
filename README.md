@@ -69,3 +69,5 @@ npm run test:e2e
 1. Start the server
 
 2. Access `http://localhost:8080/api/`
+
+To get the JSON data, access `http://localhost:8080/api-json`
