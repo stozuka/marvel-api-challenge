@@ -8,7 +8,9 @@ import { config } from 'dotenv';
 import { RootModule } from './module/root.module';
 import { logger } from './util';
 
-config({ path: resolve(__dirname, '../.env') });
+config({ path: resolve(__dirname, '../../.env') });
+
+console.log(resolve(__dirname, '../../.env'));
 
 function setupSwagger(app: INestApplication) {
   const config = new DocumentBuilder()

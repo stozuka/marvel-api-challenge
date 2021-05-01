@@ -2,15 +2,36 @@ import { Controller, Get, Param, ParseIntPipe } from '@nestjs/common';
 import { ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { logger } from 'src/util';
 
-import { CharacterDto } from './dto/character.dto';
+import { CharacterDto } from './dto';
 import { MervelService } from './marvel.service';
 
 @ApiTags('Marvel')
-@Controller()
+@Controller('characters')
 export class MarvelController {
   constructor(private readonly mervelService: MervelService) {}
 
-  @Get('characters/:characterId')
+  @Get('')
+  @ApiResponse({
+    status: 200,
+    description: 'Get all the character IDs.',
+    schema: {
+      type: 'array',
+      example: [1010332, 1011028, 1011150],
+      items: {
+        type: 'number',
+      },
+    },
+  })
+  async getCharacterIds(): Promise<number[]> {
+    try {
+      return await this.mervelService.fetchCharacterIds();
+    } catch (error) {
+      logger.error(error);
+      throw error;
+    }
+  }
+
+  @Get(':characterId')
   @ApiResponse({
     status: 200,
     description: 'Get a character.',
