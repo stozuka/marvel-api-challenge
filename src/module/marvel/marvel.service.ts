@@ -5,7 +5,7 @@ import { url, fetch } from 'src/util';
 
 import { CharacterDto } from './dto/character.dto';
 
-const CHARACTER_API_CONCURRENT = 5;
+const CHARACTER_API_CONCURRENT = 10;
 const CHARACTER_API_LIMIT = 100;
 
 @Injectable()
@@ -46,7 +46,7 @@ export class MervelService {
 
       newIds.push(...currIds);
 
-      /* Some of the response has no data means all the data are fetched. */
+      /* If some of the response has no data, that means all the data are fetched. */
       if (charactersList.some((characters) => !characters.length)) {
         break;
       }

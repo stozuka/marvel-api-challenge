@@ -11,7 +11,14 @@ export class HealthCheckController {
   @ApiResponse({
     status: 200,
     description: 'Check if the API is ready.',
-    type: HealthCheckRespDto,
+    schema: {
+      type: 'object',
+      properties: {
+        healthCheck: {
+          type: 'string',
+        },
+      },
+    },
   })
   healthCheck(): HealthCheckRespDto {
     return { healthCheck: 'OK' };

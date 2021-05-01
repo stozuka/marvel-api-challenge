@@ -10,8 +10,6 @@ import { logger } from './util';
 
 config({ path: resolve(__dirname, '../../.env') });
 
-console.log(resolve(__dirname, '../../.env'));
-
 function setupSwagger(app: INestApplication) {
   const config = new DocumentBuilder()
     .setTitle('Marvel API Challenge')
