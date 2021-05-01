@@ -1,10 +1,10 @@
 {
-  "name": "nestjs",
+  "name": "marvel-api-challenge",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "description": "API to fetch Marvel character data",
+  "author": "stozuka",
+  "license": "MIT",
   "private": true,
-  "license": "UNLICENSED",
   "engines": {
     "node": ">=14.0.0"
   },
