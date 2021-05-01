@@ -33,6 +33,10 @@ describe('marvel', () => {
     await app.init();
   });
 
+  afterEach(async () => {
+    await app.close();
+  });
+
   afterEach(() => {
     scard.mockClear();
     sadd.mockClear();
