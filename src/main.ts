@@ -6,6 +6,7 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { config } from 'dotenv';
 
 import { RootModule } from './module/root.module';
+import { logger } from './util';
 
 config({ path: resolve(__dirname, '../.env') });
 
@@ -22,30 +23,33 @@ function setupSwagger(app: INestApplication) {
 
 function setupSignalHandlers() {
   process.on('SIGTERM', async () => {
-    // TODO: add logging
-    process.exit(1);
+    logger.info({ message: 'SIGTERM received: exit with 0' });
+    process.exit(0);
   });
 
   process.on('SIGINT', async () => {
-    // TODO: add logging
-    process.exit(1);
+    logger.info({ message: 'SIGINT received: exit with 0' });
+    process.exit(0);
   });
 }
 
 function setupEventListers() {
-  process.on('unhandledRejection', () => {
-    // TODO: add logging
+  process.on('unhandledRejection', (reason, at) => {
+    logger.error({
+      message: 'unhandledRejection: exit with 1',
+      reason,
+      at,
+    });
     process.exit(1);
   });
 
-  process.on('uncaughtException', () => {
-    // TODO: add logging
+  process.on('uncaughtException', (error: any, origin: any) => {
+    logger.error({ message: 'uncaughtException: exit with 1', error, origin });
     process.exit(1);
   });
 
-  process.on('error', () => {
-    // TODO: add logging
-    process.exit(1);
+  process.on('warning', (warning) => {
+    logger.warn({ message: 'warning detected', warning });
   });
 }
 
