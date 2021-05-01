@@ -6,15 +6,24 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import fetch, { RequestInit } from 'node-fetch';
+import { logger } from 'src/util';
 
 export const withError = async (url: string, options?: RequestInit) => {
   const res = await fetch(url, options);
-  const status = res.status;
+  const statusCode = res.status;
 
-  if (status < 200 || status > 299) {
+  if (statusCode < 200 || statusCode > 299) {
     const text = JSON.parse(await res.text());
 
-    switch (status) {
+    logger.info({
+      message: 'fetch failed',
+      url,
+      options,
+      statusCode,
+      text,
+    });
+
+    switch (statusCode) {
       case 400:
         throw new BadRequestException(text);
       case 401:

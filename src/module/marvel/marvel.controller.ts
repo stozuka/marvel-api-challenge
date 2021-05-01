@@ -1,5 +1,6 @@
 import { Controller, Get, Param, ParseIntPipe } from '@nestjs/common';
 import { ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { logger } from 'src/util';
 
 import { CharacterDto } from './dto/character.dto';
 import { MervelService } from './marvel.service';
@@ -31,7 +32,7 @@ export class MarvelController {
     try {
       return await this.mervelService.fetchCharacter(characterId);
     } catch (error) {
-      // TODO: add logging
+      logger.error({ error, characterId });
       throw error;
     }
   }
