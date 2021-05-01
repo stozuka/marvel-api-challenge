@@ -4,6 +4,7 @@ import {
   NotFoundException,
   ServiceUnavailableException,
   UnauthorizedException,
+  HttpException,
 } from '@nestjs/common';
 import fetch, { RequestInit } from 'node-fetch';
 import { logger } from 'src/util';
@@ -32,7 +33,9 @@ export const withError = async (url: string, options?: RequestInit) => {
         throw new ForbiddenException(text);
       case 404:
         throw new NotFoundException(text);
-      case 500:
+      case 429:
+        throw new HttpException(text, 429);
+      default:
         throw new ServiceUnavailableException(text);
     }
   }
