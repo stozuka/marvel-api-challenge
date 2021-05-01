@@ -35,7 +35,20 @@ export class MarvelController {
   @ApiResponse({
     status: 200,
     description: 'Get a character.',
-    type: CharacterDto,
+    schema: {
+      type: 'object',
+      properties: {
+        id: {
+          type: 'number',
+        },
+        name: {
+          type: 'string',
+        },
+        description: {
+          type: 'string',
+        },
+      },
+    },
   })
   @ApiResponse({
     status: 404,
@@ -45,7 +58,7 @@ export class MarvelController {
     name: 'characterId',
     required: true,
     description: 'Character ID',
-    example: 10000,
+    example: 1009146,
   })
   async getCharacter(
     @Param('characterId', ParseIntPipe) characterId: number,

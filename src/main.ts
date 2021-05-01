@@ -4,13 +4,12 @@ import { INestApplication } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { config } from 'dotenv';
+import * as helmet from 'helmet';
 
 import { RootModule } from './module/root.module';
 import { logger } from './util';
 
 config({ path: resolve(__dirname, '../../.env') });
-
-console.log(resolve(__dirname, '../../.env'));
 
 function setupSwagger(app: INestApplication) {
   const config = new DocumentBuilder()
@@ -60,6 +59,8 @@ async function bootstrap() {
   setupEventListers();
 
   const app = await NestFactory.create(RootModule);
+
+  app.use(helmet());
 
   setupSwagger(app);
 

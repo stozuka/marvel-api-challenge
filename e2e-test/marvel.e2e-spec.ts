@@ -2,6 +2,7 @@ import { INestApplication } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import { RedisService } from 'nestjs-redis';
 import * as nock from 'nock';
+import { MARVEL_BASE_URL } from 'src/constant/endpoint-constant';
 import * as request from 'supertest';
 
 import { MarvelModule } from '../src/module/marvel/marvel.module';
@@ -64,14 +65,11 @@ describe('marvel', () => {
       scard.mockReturnValue(0);
       smembers.mockReturnValue(['1']);
 
-      nock('https://gateway.marvel.com')
-        .get('/v1/public/characters')
-        .query(true)
-        .reply(200, mockRes);
+      nock(MARVEL_BASE_URL).get('/characters').query(true).reply(200, mockRes);
 
-      nock('https://gateway.marvel.com')
+      nock(MARVEL_BASE_URL)
         .persist()
-        .get('/v1/public/characters')
+        .get('/characters')
         .query(true)
         .reply(200, mockEmptyRes);
 
@@ -82,9 +80,9 @@ describe('marvel', () => {
     });
 
     it('should return 503 when Marvel api is not available', () => {
-      nock('https://gateway.marvel.com')
+      nock(MARVEL_BASE_URL)
         .persist()
-        .get('/v1/public/characters')
+        .get('/characters')
         .query(true)
         .reply(500, {});
 
@@ -106,9 +104,9 @@ describe('marvel', () => {
         },
       };
 
-      nock('https://gateway.marvel.com')
+      nock(MARVEL_BASE_URL)
         .persist()
-        .get(`/v1/public/characters/${characterId}`)
+        .get(`/characters/${characterId}`)
         .query(true)
         .reply(200, mockRes);
 
@@ -121,9 +119,9 @@ describe('marvel', () => {
     it('should reutrn 404 when character not found', () => {
       const characterId = 1;
 
-      nock('https://gateway.marvel.com')
+      nock(MARVEL_BASE_URL)
         .persist()
-        .get(`/v1/public/characters/${characterId}`)
+        .get(`/characters/${characterId}`)
         .query(true)
         .reply(404, {});
 

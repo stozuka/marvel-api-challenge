@@ -1,6 +1,6 @@
 import * as crypto from 'crypto';
 
-const BASE_URL = 'https://gateway.marvel.com/v1/public';
+import { MARVEL_BASE_URL } from 'src/constant/endpoint-constant';
 
 const getHash = (ts: number) => {
   return crypto
@@ -15,7 +15,7 @@ export const fetchCharactersUrl = (
   ts: number,
   options: Record<string, number>,
 ) => {
-  const url = new URL(`${BASE_URL}/characters`);
+  const url = new URL(`${MARVEL_BASE_URL}/characters`);
 
   url.searchParams.append('ts', String(ts));
   url.searchParams.append('apikey', process.env.MARVEL_PUBLIC_KEY);
@@ -34,7 +34,7 @@ export const fetchCharactersUrl = (
 };
 
 export const fetchCharacterUrl = (characterId: number, ts: number) => {
-  const url = new URL(`${BASE_URL}/characters/${characterId}`);
+  const url = new URL(`${MARVEL_BASE_URL}/characters/${characterId}`);
 
   url.searchParams.append('ts', String(ts));
   url.searchParams.append('apikey', process.env.MARVEL_PUBLIC_KEY);
