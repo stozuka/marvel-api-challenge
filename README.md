@@ -22,12 +22,6 @@ cp .env.example .env
 
 4. Add values in .env
 
-5. Setup husky pre-commit hook
-
-```bash
-npm run prepare
-```
-
 ## Start the server in local
 
 1. Start Redis
