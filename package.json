@@ -11,6 +11,7 @@
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
+    "build:clean": "npm run prebuild && nest build",
     "format": "prettier --write \"src/**/*.ts\" \"e2e-test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch",
